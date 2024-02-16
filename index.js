@@ -1,6 +1,9 @@
 // FIND THE VALUE WHEN CARD IS CLICKED
 const cardElement = document.querySelectorAll(".card");
 const totalPriceElement = document.getElementById("totalPrice");
+const discountPriceElement = document.getElementById("discountPrice");
+const totalElement = document.getElementById("total");
+
 let cardNumber = 1;
 let totalPrice = 0;
 
@@ -24,3 +27,21 @@ for (const card of cardElement) {
     totalPriceElement.innerText = totalPrice;
   });
 }
+
+// discound button section goes here
+document.getElementById("apply-btn").addEventListener("click", function () {
+  const inputElement = document.getElementById("input-field").value;
+  const inputText = inputElement.split(" ").join("");
+  const input = inputText.toUpperCase();
+  if (totalPrice >= 200) {
+    if (input === "SELL200") {
+      const discount = totalPrice * 0.2;
+      discountPriceElement.innerText = discount.toFixed(2);
+      totalElement.innerText = totalPrice - discount;
+    } else {
+      alert("Please Insert Right Coupon Key");
+    }
+  } else {
+    alert("Buy More Stuff");
+  }
+});
